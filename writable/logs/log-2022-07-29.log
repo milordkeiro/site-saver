@@ -1,0 +1,64 @@
+CRITICAL - 2022-07-29 13:01:22 --> getimagesize(/assets/images/placeholder_ev_postcard_400x210.jpg): failed to open stream: No such file or directory
+in APPPATH\Controllers\GeneratorXml.php on line 44.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'getimagesize(/assets/images/placeholder_ev_postcard_400x210.jpg): failed to open stream: No such file or directory', 'APPPATH\\Controllers\\GeneratorXml.php', 44, [...])
+ 2 APPPATH\Controllers\GeneratorXml.php(44): getimagesize('/assets/images/placeholder_ev_postcard_400x210.jpg')
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\GeneratorXml->index('1')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GeneratorXml))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-29 13:28:36 --> getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+
+in APPPATH\Controllers\GeneratorXml.php on line 49.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+', 'APPPATH\\Controllers\\GeneratorXml.php', 49, [...])
+ 2 APPPATH\Controllers\GeneratorXml.php(49): getimagesize('https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg')
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\GeneratorXml->index('1')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GeneratorXml))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-29 13:34:24 --> getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+
+in APPPATH\Controllers\GeneratorXml.php on line 49.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+', 'APPPATH\\Controllers\\GeneratorXml.php', 49, [...])
+ 2 APPPATH\Controllers\GeneratorXml.php(49): getimagesize('https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg')
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\GeneratorXml->index('1')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GeneratorXml))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-29 13:38:13 --> getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+
+in APPPATH\Controllers\GeneratorXml.php on line 55.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+', 'APPPATH\\Controllers\\GeneratorXml.php', 55, [...])
+ 2 APPPATH\Controllers\GeneratorXml.php(55): getimagesize('https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg')
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\GeneratorXml->index('1')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GeneratorXml))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-29 15:37:56 --> getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+
+in APPPATH\Controllers\GeneratorXml.php on line 55.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+', 'APPPATH\\Controllers\\GeneratorXml.php', 55, [...])
+ 2 APPPATH\Controllers\GeneratorXml.php(55): getimagesize('https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg')
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\GeneratorXml->index('1')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GeneratorXml))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-29 15:46:24 --> getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+
+in APPPATH\Controllers\GeneratorXml.php on line 60.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'getimagesize(https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+', 'APPPATH\\Controllers\\GeneratorXml.php', 60, [...])
+ 2 APPPATH\Controllers\GeneratorXml.php(60): getimagesize('https://cdn.esportsvikings.com/global/images/authors/cameron.carr_author_200x200.jpg')
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\GeneratorXml->index('1')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GeneratorXml))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')

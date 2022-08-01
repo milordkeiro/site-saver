@@ -2,7 +2,7 @@
     <div class="col">
         <form action="/site/<?=esc($site->idsite)?>/scan-xml" method="post">
         <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+            <label for="exampleFormControlTextarea1" class="form-label">Sitemap XML</label>
             <textarea name="sitemapXml" class="form-control editorXML" id="sitemapXml"></textarea>
         </div>
         <div class="mb-3">

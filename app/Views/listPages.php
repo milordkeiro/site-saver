@@ -7,6 +7,11 @@
         <button type="button" class="btn btn-primary" title="Editar info del sitio" data-bs-toggle="modal" data-bs-target="#editSiteModal">
         <span class="material-symbols-outlined float-start me-2">edit_document</span> Editar Sitio
         </button>
+        |
+        <a href="/download-xml/<?= esc($site->idsite)?>" class="btn btn-success" title="Generar XML de las subpaginas">
+            <span class="material-symbols-outlined float-start me-2">file_download</span> Download XML
+        </a>
+        
     </div>
 </div>
 
@@ -59,6 +64,10 @@
         <div class="mb-3">
             <label for="domainInput1" class="form-label">Domain:</label>
             <input type="text" class="form-control" id="domainInput1" name="domain" value="<?=esc($site->domain)?>" placeholder="https://...." required>
+        </div>
+        <div class="mb-3">
+            <label for="titleInput1" class="form-label">Title of the site:</label>
+            <input type="text" class="form-control" id="titleInput1" name="title" value="<?=esc($site->title)?>" placeholder="" require>
         </div>
         <div class="mb-3">
             <label for="usernameInput1" class="form-label">Username of N.nu:</label>

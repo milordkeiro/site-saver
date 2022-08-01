@@ -14,7 +14,7 @@ class SitesModel extends Model
     protected $returnType     = 'object';
     //protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['domain', 'nick', 'tagcontent','classcontent', 'idcontent', 'xmlpages', 'act'];
+    protected $allowedFields = ['domain', 'nick', 'tagcontent','classcontent', 'idcontent', 'xmlpages', 'title', 'act'];
 
     //protected $useTimestamps = false;
     // protected $createdField  = 'created_at';

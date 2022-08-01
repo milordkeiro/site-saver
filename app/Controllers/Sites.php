@@ -42,6 +42,7 @@ class Sites extends BaseController
             'tagcontent'    => $this->request->getVar('tagcontent'),
             'classcontent'    => $this->request->getVar('classcontent'),
             'idcontent'    => $this->request->getVar('idcontent'),
+            'title' => $this->request->getVar('title'),
         ];
         $sitesModel->update($idsite, $data);
         return $this->response->redirect(site_url('/site/'.$idsite));
@@ -218,7 +219,7 @@ class Sites extends BaseController
             $idPage = $foundPage->idpage;
         }
         
-        //+++++ Saving images
+        //++++++++++++ Saving images
         $imagesModel = new \App\Models\ImagesModel();
         $pageImageModel = new \App\Models\PageImageModel();
         foreach($images as $imageString)
@@ -226,6 +227,7 @@ class Sites extends BaseController
             $image = json_decode($imageString); //++++ encode to json, so we have to decode
             $foundImage = $imagesModel->where('url', trim($image->url))->findAll();
             if(sizeOf($foundImage)>0){
+                //+++++ The image is already saved but Just To indicate how much is used the image. So It's registered in 'page_image'
                 $data = [
                     'idpage' => $idPage,
                     'idimage' => $foundImage[0]->idimage
@@ -253,6 +255,58 @@ class Sites extends BaseController
             'message' => "Se guardo correctamente"
         ];
         return $this->response->setJSON($response);
+    }
+
+    public function downloadXml($idSite)
+    {
+        $pagesModel = new \App\Models\PagesModel();
+        $sitesModel = new \App\Models\SitesModel();
+        $imagesModel = new \App\Models\ImagesModel();
+        $site = $sitesModel->find($idSite);
+        $pages = $pagesModel->where('idsite', $site->idsite)->where('act', 1)->findAll();
+
+        $dom = new \DOMDocument();
+		$dom->encoding = 'utf-8';
+		$dom->xmlVersion = '1.0';
+		$dom->formatOutput = true;
+	    $xml_file_name = 'export-site-'.$site->nick.'.xml';
+
+        $rss = $dom->createElement('rss');
+        $attr_rss = new DOMAttr('version', '2.0');
+        $rss->setAttributeNode($attr_rss);
+        $channel = $dom->createElement('channel');
+        $titleChild = $dom->createElement('title', $site->title);
+        $channel->appendChild($titleChild);
+        $linkChild = $dom->createElement('link', $site->domain);
+        $channel->appendChild($linkChild);
+        $descriptionChild = $dom->createElement('description', '');
+        $channel->appendChild($descriptionChild);
+        $pubDateChild = $dom->createElement('pubDate', '');
+        $channel->appendChild($pubDateChild);
+        $languageChild = $dom->createElement('language', '');
+        $channel->appendChild($languageChild);
+
+        $item = $dom->createElement('item');
+        $titleItemChild = $dom->createElement('title', 'Default Post');
+        $item->appendChild($titleItemChild);
+        $linkItemChild = $dom->createElement('link', $site->domain.'default-post');
+        $item->appendChild($linkItemChild);
+        $pubDateItemChild = $dom->createElement('pubDate', 'Fri, 03 Dec 2021 02:26:32 +0000');
+        $item->appendChild($pubDateItemChild);
+        $creatorItemChild = $dom->createElement('dc:creator', '<![CDATA[admin]]>');
+        $item->appendChild($creatorItemChild);
+        $descriptionItemChild = $dom->createElement('description', 'Description of content of defaul post');
+        $item->appendChild($descriptionItemChild);
+
+        $contentItemChild = $dom->createElement('content:encoded', '<![CDATA[MAIN content of defaul post]]');
+        $item->appendChild($contentItemChild);
+
+        $typeItemChild = $dom->createElement('wp:post_type', '<![CDATA[post]]');
+        $item->appendChild($typeItemChild);
+
+        $channel->appendChild($item);
+
+        $rss->appendChild($channel);
     }
 
     public function testJson()

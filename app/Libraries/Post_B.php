@@ -2,9 +2,7 @@
 namespace App\Libraries;
 class Post {
 	private $_url;
-	
 	private $_img_base_url;
-	private $_base_url;
     private $_query;    
     private $_post_date;    
     private $_post_content;
@@ -22,24 +20,8 @@ class Post {
         //require_once 'dababase.class.php';
         $this->_url = $url;
         $this->_query = $query;
-        $this->_base_url = 'https://www.esportsvikings.com';
 		$this->_img_base_url = $img_base_url;
     }    
-    function getInnerHTML(&$node) {
-		 ## if html parameter not specified, return the current contents of $node
-		$doc = new \DOMDocument('1.0', 'utf-8');
-		foreach ($node->childNodes as $child)
-		$doc->appendChild($doc->importNode($child, true));
-
-		return $doc->saveHTML();
-	}
-	private function getHtml($nodes) {
-	  $result = '';
-	  foreach ($nodes as $node) {
-	    $result .= $node->ownerDocument->saveHtml($node);
-	  }
-	  return $result;
-	}
 
     public function getPostInfo(){
     	
@@ -64,17 +46,14 @@ class Post {
 		}	
 		$this->_meta_description = $description;
 		//div content
-		
 		$xpath = new \DOMXPath($dom);    
-		$body = $xpath->query($this->_query)->item(0);
-	   	
-		$children = $body->childNodes; 
-		foreach ($children as $child) { 
-		    $this->_post_content .= $child->ownerDocument->saveHTML( $child ); 
-		}
-	    
-	    //$this->_post_content =  $innerHTML;
-	    //images
+	   
+	    //body content
+	    $body = $xpath->query($this->_query);
+
+	    $body = $body->item(0);
+	    $this->_post_content =  $dom->saveXML($body);
+
 	    $images = $xpath->query($this->_query.'//img');
 	    for ($i = 0; $i < $images->length; $i++){
 		    $node = $images->item($i);
@@ -95,27 +74,11 @@ class Post {
 		    	}else{		    		
 		    		$pathinfo = pathinfo($this->_img_base_url.'/'.$myLink);
 		    		$this->_post_images[] = json_encode(array('url'=>$myLink, 'name'=>$pathinfo['filename'].'.'.$pathinfo['extension']));
-		    	}		        
+		    	}
+		        
 		    }
 		}	
-		$anchors = $xpath->query($this->_query.'//a');	    
 
-	    for ($i = 0; $i < $anchors->length; $i++){
-		    $node = $anchors->item($i);
-		    $myLink = $node->getAttribute('href');
-			if( !empty($myLink) ){
-
-			    if(substr($myLink,0,8) == 'https://') {
-		        	$this->_post_anchors[] = $myLink;
-			    } else {
-			    	if( substr($myLink,0,1) == '/' ){
-			    		$this->_post_anchors[] = $this->_base_url.$myLink;	
-			    	}else{
-			    		$this->_post_anchors[] = $this->_base_url.'/'.$myLink;
-			    	}
-			    }
-		    }   
-		}
 	    $date = date('Y-m-d');	    
 	    $this->_post_date = date('Y-m-d H:i:s', strtotime($date));		    
 	    if( $path_size > 3 ){
@@ -132,15 +95,14 @@ class Post {
 		return $this->_post_title;
 	}
 
+	public function getPostContent(){
+		return $this->_post_content;
+	}
+
 	public function getPostImages(){
 		return $this->_post_images;
 	}
-	public function getPostAnchors(){
-		return $this->_post_anchors;
-	}
-	public function getPostContent(){
-		return $this->_post_content;
-	}  	
+  	
   	private function curl($url){    
 	    $ch = curl_init();
 	    curl_setopt($ch, CURLOPT_URL, $url);
