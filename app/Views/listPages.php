@@ -8,10 +8,9 @@
         <span class="material-symbols-outlined float-start me-2">edit_document</span> Editar Sitio
         </button>
         |
-        <a href="/download-xml/<?= esc($site->idsite)?>" class="btn btn-success" title="Generar XML de las subpaginas">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#downloadModalToggle">
             <span class="material-symbols-outlined float-start me-2">file_download</span> Download XML
-        </a>
-        
+        </button>
     </div>
 </div>
 
@@ -91,6 +90,36 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary" form="editSiteForm">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- +++++++++++ modal to download  ++++++ -->
+<div class="modal fade" id="downloadModalToggle" aria-hidden="true" aria-labelledby="downloadModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel">Download XML of the pages</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="downloadForm" action="/download-xml/" method="post">
+            <div class="mb-3 w-25">
+            <label for="fromDownload" class="form-label">From:</label>
+            <input type="number" class="form-control" id="fromDownload" name="offset" value="" placeholder="" require>
+            </div>
+            <div class="mb-3 w-25">
+            <label for="limitDownload" class="form-label">Limit:</label>
+            <input type="number" class="form-control" id="limitDownload" name="limit" value="" placeholder="" require>
+            </div>
+            <input type="hidden" name="idsite" value="<?=esc($site->idsite)?>" />
+            
+        </form>
+      </div>
+      <div class="modal-footer">
+            <button type="submit" class="btn btn-success" title="Generar XML de las subpaginas" form="downloadForm">
+                <span class="material-symbols-outlined float-start me-2">file_download</span> Download XML
+            </button>
       </div>
     </div>
   </div>

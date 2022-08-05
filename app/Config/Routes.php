@@ -44,7 +44,7 @@ $routes->get('page/(:num)', 'Sites::viewPage/$1');
 $routes->get('site/(:num)/upload-xml', 'Sites::setXML/$1');
 $routes->post('site/(:num)/scan-xml', 'Sites::scanXML/$1');
 $routes->post('site/(:num)/save-page', 'Sites::savePage/$1');
-$routes->get('download-xml/(:num)', 'GeneratorXml::index/$1');
+$routes->post('download-xml/', 'GeneratorXml::index');
 $routes->get('testApi', 'Sites::testJson');
 $routes->get('(:any)', 'Home::anyPage/$1');
 /*

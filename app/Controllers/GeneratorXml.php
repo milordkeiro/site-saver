@@ -4,13 +4,17 @@ namespace App\Controllers;
 
 class GeneratorXml extends BaseController
 {
-    public function index($idSite)
+    public function index()
     {
+        $idSite = $this->request->getVar('idsite');
+        $limit = $this->request->getVar('limit');
+        $offset =  $this->request->getVar('offset');
+
         $pagesModel = new \App\Models\PagesModel();
         $sitesModel = new \App\Models\SitesModel();
         $imagesModel = new \App\Models\ImagesModel();
         $site = $sitesModel->find($idSite);
-        $pages = $pagesModel->where('idsite', $site->idsite)->where('act', 1)->findAll();
+        $pages = $pagesModel->where('idsite', $site->idsite)->where('act', 1)->findAll($limit, $offset);
 
         $itemsXml = '';
         foreach($pages as $page){
@@ -48,24 +52,27 @@ class GeneratorXml extends BaseController
                 }
 
                 $file_headers = @get_headers($image->url);
-                if($file_headers[0] == 'HTTP/1.1 404 Not Found'){
-                    $image->url = $defaultTransparentImg;
-                } 
-                else 
-                {
-                    if ($file_headers[0] == 'HTTP/1.1 302 Found' && $file_headers[7] == 'HTTP/1.1 404 Not Found'){
+                if(is_array($file_headers)){
+                    if($file_headers[0] == 'HTTP/1.1 404 Not Found'){
                         $image->url = $defaultTransparentImg;
                     } 
                     else 
                     {
-                        // if(is_array(getimagesize($image->url))) {
-                        //     //echo "The file exists";
-                        // } else {
-                        //     //echo "The file does not exist";
-                        //     $image->url = $defaultTransparentImg;
-                        // }
+                        if ($file_headers[0] == 'HTTP/1.1 302 Found' && $file_headers[7] == 'HTTP/1.1 404 Not Found'){
+                            $image->url = $defaultTransparentImg;
+                        } 
+                        else 
+                        {
+                            // if(is_array(getimagesize($image->url))) {
+                            //     //echo "The file exists";
+                            // } else {
+                            //     //echo "The file does not exist";
+                            //     $image->url = $defaultTransparentImg;
+                            // }
+                        }
                     }
                 }
+                else{$image->url = $defaultTransparentImg;}
                 
                 
                 //++++ replacing https to http
@@ -86,7 +93,14 @@ class GeneratorXml extends BaseController
                 $index++;
             }
         
-
+        //+++++++++ Changing urls 
+        // +++   /betting/guides-and-tips/tournament-betting-on-esports-is-it-worth-it- 
+        // +++  to 
+        // +++   /betting/guides-and-tips/tournament-betting-on-esports-is-it-worth-it    
+        // $page->content = str_replace("/betting/guides-and-tips/tournament-betting-on-esports-is-it-worth-it-", 
+        //                              "/betting/guides-and-tips/tournament-betting-on-esports-is-it-worth-it", $page->content);
+        
+        
         $itemsXml .= '<item>
         <title><![CDATA['.$page->title.']]></title>
         <link>'.$page->path.'</link>

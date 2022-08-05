@@ -9,7 +9,7 @@ class Post {
     private $_post_date;    
     private $_post_content;
     private $_post_title;
-    private $_meta_description;
+    private $_meta_description;    
     private $_post_images = array();
     private $_post_anchors = array();
     /**
@@ -72,8 +72,44 @@ class Post {
 		foreach ($children as $child) { 
 		    $this->_post_content .= $child->ownerDocument->saveHTML( $child ); 
 		}
-	    
-	    //$this->_post_content =  $innerHTML;
+	    	
+		$anchors = $xpath->query($this->_query.'//a');	    
+
+	    for ($i = 0; $i < $anchors->length; $i++){
+		    $node = $anchors->item($i);
+		    $myLink = $node->getAttribute('href');
+			if( !empty($myLink) ){
+
+			    if(substr($myLink,0,8) == 'https://') {
+		        	$this->_post_anchors[] = $myLink;
+			    } else {
+			    	if( substr($myLink,0,1) == '/' ){
+			    		$this->_post_anchors[] = $this->_base_url.$myLink;	
+			    	}else{
+			    		$this->_post_anchors[] = $this->_base_url.'/'.$myLink;
+			    	}
+			    }
+		    }   
+		}
+	    $date = date('Y-m-d');	    
+	    $this->_post_date = date('Y-m-d H:i:s', strtotime($date));	
+
+	    if( $path_size > 3 ){
+		    $date = $xpath->query('//span[@class="date"]');
+		    $date = $date->item(0)->nodeValue;    		    
+		    $this->_post_date = date('Y-m-d H:i:s', strtotime($date));
+	    }else{
+	    	$style_images = array();
+	    	if( $path_size === 2 ){
+	    		$node = $xpath->query($this->_query.'//div[@class="summary-img"]');
+	    		if( $node->length != 0){
+		    		$style = $node->item(0)->getAttribute('style');
+		    		$style_images = $this->extract_css_urls($style);
+		    		$pathinfo = pathinfo($style_images[0]);
+		        	$this->_post_images[] = json_encode(array('url'=>$style_images[0], 'name'=>$pathinfo['filename'].'.'.$pathinfo['extension']));
+		        }
+	    	}
+	    }
 	    //images
 	    $images = $xpath->query($this->_query.'//img');
 	    for ($i = 0; $i < $images->length; $i++){
@@ -97,37 +133,29 @@ class Post {
 		    		$this->_post_images[] = json_encode(array('url'=>$myLink, 'name'=>$pathinfo['filename'].'.'.$pathinfo['extension']));
 		    	}		        
 		    }
-		}	
-		$anchors = $xpath->query($this->_query.'//a');	    
-
-	    for ($i = 0; $i < $anchors->length; $i++){
-		    $node = $anchors->item($i);
-		    $myLink = $node->getAttribute('href');
-			if( !empty($myLink) ){
-
-			    if(substr($myLink,0,8) == 'https://') {
-		        	$this->_post_anchors[] = $myLink;
-			    } else {
-			    	if( substr($myLink,0,1) == '/' ){
-			    		$this->_post_anchors[] = $this->_base_url.$myLink;	
-			    	}else{
-			    		$this->_post_anchors[] = $this->_base_url.'/'.$myLink;
-			    	}
-			    }
-		    }   
 		}
-	    $date = date('Y-m-d');	    
-	    $this->_post_date = date('Y-m-d H:i:s', strtotime($date));		    
-	    if( $path_size > 3 ){
-		    $date = $xpath->query('//span[@class="date"]');
-		    $date = $date->item(0)->nodeValue;    		    
-		    $this->_post_date = date('Y-m-d H:i:s', strtotime($date));
-	    }
 	    
 	}
+	// Extract URLs from CSS text.
+	private function extract_css_urls($text){
+		$urls['import'] = array();
+		preg_match_all('/url\(([\s])?([\"|\'])?(.*?)([\"|\'])?([\s])?\)/i', $text, $matches, PREG_PATTERN_ORDER);
+		if($matches){
+			foreach ( $matches as $match ){
+				if ( !empty($match))
+					$urls['import'][] = preg_replace( '/\\\\(.)/u', '\\1', $match );
+			}
+		}
+		if(isset($urls['import'][3]))
+			return $urls['import'][3];
+		else
+			$urls['import'];
+	}
+
 	public function getMetaDescription(){
 		return $this->_meta_description;
 	}
+
 	public function getPostTitle(){
 		return $this->_post_title;
 	}
@@ -135,12 +163,15 @@ class Post {
 	public function getPostImages(){
 		return $this->_post_images;
 	}
+
 	public function getPostAnchors(){
 		return $this->_post_anchors;
 	}
+
 	public function getPostContent(){
 		return $this->_post_content;
 	}  	
+
   	private function curl($url){    
 	    $ch = curl_init();
 	    curl_setopt($ch, CURLOPT_URL, $url);
