@@ -16,7 +16,8 @@ class Sites extends BaseController
         $pages = $pagesModel->where('idsite', $site->idsite)->where('act', 1)->findAll();
         //echo $sites;
         $dataHeader["title"] = $site->domain;
-        $dataHeader["detail"] = "<div class='mt-4 mb-2 text-start'><strong>Username N.nu:</strong> ".$site->nick;
+        $dataHeader["detail"] = "<div class='mt-4 mb-2 text-start'><h3>".$site->titleadmin."</h3> ";
+        $dataHeader["detail"] .= "<br><strong>Username N.nu:</strong> ".$site->nick;
         $dataHeader["detail"] .= "<br><strong>Searching content by:</strong><br>";
         $dataHeader["detail"] .= "<ul>".
                                     "<li>Tag: ".$site->tagcontent."</li>".
@@ -43,8 +44,18 @@ class Sites extends BaseController
             'classcontent'    => $this->request->getVar('classcontent'),
             'idcontent'    => $this->request->getVar('idcontent'),
             'title' => $this->request->getVar('title'),
+            'titleadmin' => $this->request->getVar('titleadmin'),
+            'act' => 1,
         ];
-        $sitesModel->update($idsite, $data);
+
+        if($idsite==""){
+            $sitesModel->insert($data);
+            $idsite = $sitesModel->getInsertID();
+        }
+        else{
+            $sitesModel->update($idsite, $data);
+        }
+        
         return $this->response->redirect(site_url('/site/'.$idsite));
     }
 
@@ -192,7 +203,7 @@ class Sites extends BaseController
         if($site->idcontent)
         {$format = '//'.$site->tagcontent.'[@id="'.$site.idcontent.'"]'; }
 
-        $post = new Post($loc, $format, 'https://cdn.esportsvikings.com', 'https://cdn.esportsvikings.com');
+        $post = new Post($loc, $format, 'https://cdn.esportsvikings.se', 'https://cdn.esportsvikings.se');
         $post->getPostInfo();
         $title = $post->getPostTitle();
         $descriptionpage = $post->getMetaDescription();

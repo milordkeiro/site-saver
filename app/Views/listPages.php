@@ -34,7 +34,7 @@
             foreach($pages as $page){
             ?>
             <tr>
-                <th scope="row"><?= esc ($index + 1)?></th>
+                <th scope="row"><?= esc ($index)?></th>
                 <td><?= esc($page->path)?></td>
                 <td><?= esc($page->title)?></td>
                 <td><?= esc($page->descriptionpage)?></td>
@@ -60,6 +60,10 @@
       <div class="modal-body">
         <form id="editSiteForm" action="/site/save" method="post">
         <input type="hidden" name="idsite" value="<?=esc($site->idsite)?>" />    
+        <div class="mb-3">
+            <label for="titleadminInput1" class="form-label">Title admin:</label>
+            <input type="text" class="form-control" id="titleadminInput1" name="titleadmin" value="<?=esc($site->titleadmin)?>" placeholder="" required>
+        </div>
         <div class="mb-3">
             <label for="domainInput1" class="form-label">Domain:</label>
             <input type="text" class="form-control" id="domainInput1" name="domain" value="<?=esc($site->domain)?>" placeholder="https://...." required>

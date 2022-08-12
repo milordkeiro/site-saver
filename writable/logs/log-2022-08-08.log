@@ -1,0 +1,126 @@
+ERROR - 2022-08-08 07:48:04 --> Error connecting to the database: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+CRITICAL - 2022-08-08 07:48:04 --> Unable to connect to the database.
+Main connection [MySQLi]: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+in SYSTEMPATH\Database\BaseConnection.php on line 416.
+ 1 SYSTEMPATH\Database\BaseConnection.php(586): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `site`
+WHERE `site`.`idsite` = :site.idsite:', [...], false)
+ 3 SYSTEMPATH\Model.php(181): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(523): CodeIgniter\Model->doFind(true, '1')
+ 5 APPPATH\Controllers\Sites.php(15): CodeIgniter\BaseModel->find('1')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->index('1')
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 07:58:55 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(196): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 07:59:09 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(196): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 08:00:22 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(196): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 08:01:01 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(196): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 08:01:34 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(196): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 08:02:09 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(196): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 08:05:13 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(196): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 13:54:42 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(207): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 13:54:54 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(207): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 13:54:58 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(207): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 13:55:32 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(207): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-08-08 13:58:19 --> Trying to get property 'nodeValue' of non-object
+in APPPATH\Libraries\Post.php on line 99.
+ 1 APPPATH\Libraries\Post.php(99): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nodeValue\' of non-object', 'APPPATH\\Libraries\\Post.php', 99, [...])
+ 2 APPPATH\Controllers\Sites.php(207): App\Libraries\Post->getPostInfo()
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('2')
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')

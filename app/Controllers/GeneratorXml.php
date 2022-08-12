@@ -76,14 +76,14 @@ class GeneratorXml extends BaseController
                 
                 
                 //++++ replacing https to http
-                $random = rand ( 10000 , 99999 );
+                $random = rand ( 10 , 99 );
                 if($image->url != $defaultTransparentImg)
                 {
                 $urlImageNoParam = strtok($image->url, '?');
                 $splitImage = explode('.',$urlImageNoParam);
                 $extention = $splitImage[sizeof($splitImage)-1];
                 //echo $extention;
-                $forceHttp = "http://clients.todaysweb.com/curl.php?url=".$urlImageNoParam."?_imgcomp".$index.".".$extention;
+                $forceHttp = "http://clients.todaysweb.com/curl.php?url=".$urlImageNoParam."?_imgcomp".$random."-".$index.".".$extention;
                 $page->content = str_replace("MILORD".$index."MILORD", $forceHttp, $page->content);
                 $page->content = str_replace('src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="'.$forceHttp.'"', 'src="'.$forceHttp.'"', $page->content);
                 }
