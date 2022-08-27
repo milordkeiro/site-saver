@@ -76,7 +76,7 @@ class GeneratorXml extends BaseController
                 
                 
                 //++++ replacing https to http
-                $random = rand ( 10 , 99 );
+                $random = rand ( 100 , 999 );
                 if($image->url != $defaultTransparentImg)
                 {
                 $urlImageNoParam = strtok($image->url, '?');

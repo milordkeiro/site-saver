@@ -33,7 +33,7 @@
         <form id="createSiteForm" action="/site/save" method="post">
         <input type="hidden" name="idsite" value="" />    
         <div class="mb-3">
-            <label for="titleadminInput1" class="form-label">Domain:</label>
+            <label for="titleadminInput1" class="form-label">Title admin:</label>
             <input type="text" class="form-control" id="titleadminInput1" name="titleadmin" value="" placeholder="" required>
         </div>
         <div class="mb-3">
