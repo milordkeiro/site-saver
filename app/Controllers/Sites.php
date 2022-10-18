@@ -201,7 +201,7 @@ class Sites extends BaseController
         if($site->classcontent)
         {$format = '//'.$site->tagcontent.'[@class="'.$site->classcontent.'"]'; }
         if($site->idcontent)
-        {$format = '//'.$site->tagcontent.'[@id="'.$site.idcontent.'"]'; }
+        {$format = '//'.$site->tagcontent.'[@id="'.$site->idcontent.'"]'; }
 
         $post = new Post($loc, $format, 'https://cdn.esportsvikings.se', 'https://cdn.esportsvikings.se');
         $post->getPostInfo();
@@ -211,7 +211,9 @@ class Sites extends BaseController
         $images = $post->getPostImages();
         //-----------------------------------------------------------
         $pagesModel = new \App\Models\PagesModel();
-        $foundPage = $pagesModel->where('path', trim(str_replace($site->domain,'',$loc)))->findAll();
+        $whereArray = array('path' => trim(str_replace($site->domain,'',$loc)), 'idsite' => $site->idsite);
+        $foundPage = $pagesModel->where($whereArray)->findAll();
+        //var_dump(sizeOf($foundPage));
         if(sizeOf($foundPage)==0){
             $data = [
                 'idsite' => $site->idsite,
@@ -227,7 +229,7 @@ class Sites extends BaseController
             $idPage = $pagesModel->getInsertID();
         }
         else{
-            $idPage = $foundPage->idpage;
+            $idPage = $foundPage[0]->idpage;
         }
         
         //++++++++++++ Saving images
@@ -264,6 +266,25 @@ class Sites extends BaseController
         $response = [
             'success' => true,
             'message' => "Se guardo correctamente"
+        ];
+        return $this->response->setJSON($response);
+    }
+
+    public function deletePages()
+    {
+        $checkeds = $this->request->getVar('checkeds');
+        $idsCheckeds = explode(",",$checkeds);
+        //++++++  Elimiando de la tabla page_image
+        $pageImageModel = new \App\Models\PageImageModel();
+        $pageImageModel->delete($idsCheckeds);
+        //++++++  Eliminando la pagina
+        $pagesModel = new \App\Models\PagesModel();
+        $pagesModel->delete($idsCheckeds);
+
+        $response = [
+            'success' => true,
+            'stringcheckeds'=> $checkeds,
+            'message' => "Se eliminaron las paginas correctamente"
         ];
         return $this->response->setJSON($response);
     }

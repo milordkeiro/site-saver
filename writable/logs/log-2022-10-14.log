@@ -1,0 +1,24 @@
+CRITICAL - 2022-10-14 15:59:42 --> Trying to get property 'idpage' of non-object
+in APPPATH\Controllers\Sites.php on line 230.
+ 1 APPPATH\Controllers\Sites.php(230): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'idpage\' of non-object', 'APPPATH\\Controllers\\Sites.php', 230, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('5')
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-10-14 16:13:03 --> Trying to get property 'idpage' of non-object
+in APPPATH\Controllers\Sites.php on line 230.
+ 1 APPPATH\Controllers\Sites.php(230): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'idpage\' of non-object', 'APPPATH\\Controllers\\Sites.php', 230, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('5')
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-10-14 16:56:38 --> Trying to get property 'idpage' of non-object
+in APPPATH\Controllers\Sites.php on line 231.
+ 1 APPPATH\Controllers\Sites.php(231): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'idpage\' of non-object', 'APPPATH\\Controllers\\Sites.php', 231, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('5')
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')

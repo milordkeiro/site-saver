@@ -1,0 +1,14 @@
+CRITICAL - 2022-10-11 15:58:50 --> Object of class stdClass could not be converted to string
+in APPPATH\Controllers\Sites.php on line 204.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('5')
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-10-11 16:25:36 --> Object of class stdClass could not be converted to string
+in APPPATH\Controllers\Sites.php on line 204.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Sites->savePage('5')
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sites))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')

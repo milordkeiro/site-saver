@@ -18,11 +18,11 @@ class Post {
 	 * @param string  $img_base_url Url base CDN for images
 	 * @return Object. post objet
 	 */
-    function __construct($url, $query, $img_base_url='https://cdn.esportsvikings.com') {
+    function __construct($url, $query, $img_base_url='https://cdn.urheilu.com') {
         //require_once 'dababase.class.php';
         $this->_url = $url;
         $this->_query = $query;
-        $this->_base_url = 'https://www.esportsvikings.com';
+        $this->_base_url = 'https://www.urheilu.com';
 		$this->_img_base_url = $img_base_url;
     }    
     function getInnerHTML(&$node) {
@@ -48,10 +48,33 @@ class Post {
 		$path_size = count($url_path);
 		
 	    $html = $this->curl($this->_url);
-	    $dom = new \DOMDocument('1.0', 'utf-8');
+
+	    @$dom = new \DOMDocument('1.0', 'utf-8');
 	    libxml_use_internal_errors(true);//remove warning from loadHTML()
-	    $dom->loadHTML('<meta http-equiv="Content-Type" content="text/html; charset=utf-8">' . $html);
-	    $html = $dom->saveHTML();          
+	    @$dom->loadHTML($html);
+	    $html = @$dom->saveHTML();          
+
+	    $anchors = $dom->getElementsByTagName("a");
+		for ($i = $anchors->length - 1; $i >= 0; $i --) {
+			$node = $anchors->item($i);
+			if( strpos($node->getAttribute('href'), 'cdn-cgi/l/email-protection') !== false ){    
+			    if( $node->getAttribute('title') == "'Author email'" ){			    	
+	            	$encStr = 	$node->getAttribute('href');
+	            	$encodedString = substr($encStr, strpos($encStr, "#") + 1 );             	
+	            	$email = $this->cfDecodeEmail($encodedString);
+	            	$nodeA = $dom->createElement("a", $email);
+	            	$nodeA->setAttribute('_ngcontent-sc46', "");
+	            	$nodeA->setAttribute('rel', "nofollow");
+	            	$nodeA->setAttribute('title', "'Author email'");
+	            	$nodeA->setAttribute('href', "mailto:".$email);
+	            	$node->parentNode->replaceChild($nodeA, $node);            	
+	            }else{	            	
+	            	$encodedString = $node->getAttribute('data-cfemail');
+	            	$email = $this->cfDecodeEmail($encodedString);
+	            	$node->parentNode->replaceChild($dom->createTextNode($email), $node);            	
+	            }
+            }
+		}	
 	    // title and metas
 	    $nodes = $dom->getElementsByTagName('title');   	
 	    $this->_post_title = trim($nodes->item(0)->nodeValue);    
@@ -65,7 +88,6 @@ class Post {
 		}	
 		$this->_meta_description = $description;
 		//div content
-		
 		$xpath = new \DOMXPath($dom);    
 		$body = $xpath->query($this->_query)->item(0);
 	   	
@@ -77,6 +99,7 @@ class Post {
 	    $anchors = $xpath->query($this->_query.'//a');            
         for ($i = 0; $i < $anchors->length; $i++){
             $node = $anchors->item($i);
+            
             $myLink = $node->getAttribute('href');
                 if( !empty($myLink) ){
                     if(substr($myLink,0,8) == 'https://') {
@@ -90,6 +113,7 @@ class Post {
                     }
             }  
         }
+
         $date = date('Y-m-d');            
         $this->_post_date = date('Y-m-d H:i:s', strtotime($date));  
         $numb = 3;        
@@ -158,6 +182,13 @@ class Post {
 		}
 	    
 	    
+	}
+	private function cfDecodeEmail($encodedString) {
+	    $k = hexdec(substr($encodedString, 0, 2));
+	    for ($i = 2, $email = ''; $i < strlen($encodedString) - 1; $i += 2) {
+	       $email .= chr(hexdec(substr($encodedString, $i, 2)) ^ $k);
+	    }
+	    return $email;
 	}
 	public function getMetaDescription(){
 		return $this->_meta_description;

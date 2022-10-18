@@ -15,10 +15,18 @@
 </div>
 
 <div class="row mt-4">
+    <div id="optionsPage" class="col-12 text-end">
+        Eliminar las paginas seleccionadas? 
+        <button type="button" class="btn btn-danger" onClick="deletePages()">
+          <span class="material-symbols-outlined float-start me-2">delete</span> Eliminar
+        </button>
+    </div>
+    
     <div class="col">
     <table class="table table-hover">
         <thead>
             <tr>
+            <th scope="col"></th>
             <th scope="col">#</th>
             <th scope="col">Path</th>
             <th scope="col">Title</th>
@@ -34,13 +42,19 @@
             foreach($pages as $page){
             ?>
             <tr>
+                <td>
+                  <input class="btn checkbox-page" type="checkbox" id="selectedPage-<?=esc($page->idpage)?>" 
+                         name="selectedPage-<?=esc($page->idpage)?>" onClick="selectedPage()">
+                </td>
                 <th scope="row"><?= esc ($index)?></th>
                 <td><?= esc($page->path)?></td>
                 <td><?= esc($page->title)?></td>
                 <td><?= esc($page->descriptionpage)?></td>
                 <td><?= esc($page->lastmod)?></td>
                 <td><?= esc($page->priority)?></td>
-                <td><a href="/page/<?=esc($page->idpage)?>" class="btn"><span class="material-symbols-outlined float-start">open_in_new</span></a></td>
+                <td>
+                  <a href="/page/<?=esc($page->idpage)?>" class="btn"><span class="material-symbols-outlined float-start">open_in_new</span></a>
+                </td>
             </tr>
             <?php $index++; } ?>
         </tbody>
@@ -128,3 +142,50 @@
     </div>
   </div>
 </div>
+<script>
+  function selectedPage()
+  {
+    var checkBoxs = document.getElementsByClassName('checkbox-page');
+    var hasCheckeds = false;
+    for(var i=0;i<checkBoxs.length;i++)
+    {
+      if(checkBoxs[i].checked)
+      {
+        hasCheckeds = true;
+      }
+    }
+    if(hasCheckeds){document.getElementById("optionsPage").style.display = "block";}
+    else{document.getElementById("optionsPage").style.display = "none";}
+  }
+
+  
+function deletePages(){
+        var url = '/site/delete-pages';
+
+        var checkBoxs = document.getElementsByClassName('checkbox-page');
+        var isCheckeds = [];
+        for(var i=0;i<checkBoxs.length;i++)
+        {
+          if(checkBoxs[i].checked)
+          {
+            isCheckeds.push( checkBoxs[i].id.replace('selectedPage-','') );
+          }
+        }
+        stringCheckeds = isCheckeds.join(",");
+
+        var dataPage = {'checkeds': stringCheckeds};
+        $.post( url, dataPage)
+                .done(function( data ) {
+                    alert( "Data Loaded: " + data.message );
+                    if(data.success)
+                    {
+                      location.reload();
+                    }
+                })
+                .fail(function() {
+                    alert( "Error: No se pudo guardar la pagina" );
+                    $("#action"+index).show();
+                    $("#pending"+index).hide();
+                });
+    }
+</script>

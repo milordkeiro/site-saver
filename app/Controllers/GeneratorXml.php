@@ -16,9 +16,19 @@ class GeneratorXml extends BaseController
         $site = $sitesModel->find($idSite);
         $pages = $pagesModel->where('idsite', $site->idsite)->where('act', 1)->findAll($limit, $offset);
 
+        $pathWithRaya = array();
         $itemsXml = '';
         foreach($pages as $page){
-        $page->content = str_replace(array("\r", "\n"), "", $page->content);
+        $page->content = str_replace(array("\r", "\n"), " ", $page->content);
+        $page->content = str_replace("router-outlet", "div", $page->content);
+        $page->content = str_replace("app-article", "div", $page->content);
+
+        //++++++ Removing "-" of the paht, if it has it
+        if(substr($page->path, -1) == "-"){
+            $page->path = substr_replace($page->path ,"", -1);
+            $pathWithRaya[] =$page->path;
+        }
+
         $listImage = $imagesModel->imagesByPage($page->idpage);
             //$formatedImages = array();
             
@@ -48,7 +58,7 @@ class GeneratorXml extends BaseController
             {
                 if(strpos($image->url, '/assets/') !== false)
                 {
-                    $image->url = str_replace('/assets/', "https://www.esportsvikings.com/assets/", $image->url);
+                    $image->url = str_replace('/assets/', $site->domain."assets/", $image->url);
                 }
 
                 $file_headers = @get_headers($image->url);
@@ -323,7 +333,13 @@ class GeneratorXml extends BaseController
             
             ';
 
-        $name = 'export-sitesaver.WordPress.2022-07-14.xml';
+        //+++++ Searching all links with "-" at the end, then It's repleaced with one thar hasn't
+        foreach($pathWithRaya as $path){
+            $xmlText = str_replace($path.'-',$path, $xmlText);
+        }
+
+
+        $name = 'export-sitesaver.WordPress.2022-10-11.xml';
         return $this->response->download($name, $xmlText);
 
     }

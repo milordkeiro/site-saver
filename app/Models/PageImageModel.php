@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class PageImageModel extends Model
 {
     protected $table      = 'page_image';
-    //protected $primaryKey = 'idpage';
+    protected $primaryKey = 'idpage';
 
     //protected $useAutoIncrement = true;
 
